@@ -1,5 +1,6 @@
 package service;
 
+import model.Course;
 import model.Student;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,4 +64,51 @@ public class StudentService {
         students.removeIf(s -> s.getId() == id);
         System.out.println("Student deleted (if existed).");
     }
+
+    /**
+     * Retrieve a student by their ID from the list of students.
+     * @param id The ID of the student to search for
+     * @return The Student object if found, otherwise null
+     */
+    public Student getStudentById(int id) {
+        for (Student s : students) {
+            if (s.getId() == id) return s;
+        }
+        return null;
+    }
+
+    /**
+     * Add a course to a specific student identified by studentId.
+     * @param studentId The ID of the student
+     * @param course The Course object to add
+     */
+    public void addCourseToStudent(int studentId, Course course) {
+        Student s = getStudentById(studentId);
+        if(s != null) s.addCourse(course);
+        else System.out.println("Student not found.");
+    }
+
+    /**
+     * Update a course's note for a specific student.
+     * @param studentId The ID of the student
+     * @param courseName The name of the course to update
+     * @param newNote The new note value
+     */
+    public void updateStudentCourse(int studentId, String courseName, float newNote) {
+        Student s = getStudentById(studentId);
+        if(s != null) s.updateCourse(courseName, newNote);
+        else System.out.println("Student not found.");
+    }
+
+    /**
+     * Remove a course from a specific student by course name.
+     * @param studentId The ID of the student
+     * @param courseName The name of the course to remove
+     */
+    public void removeStudentCourse(int studentId, String courseName) {
+        Student s = getStudentById(studentId);
+        if(s != null) s.removeCourse(courseName);
+        else System.out.println("Student not found.");
+    }
+
 }
