@@ -111,4 +111,12 @@ public class StudentService {
         else System.out.println("Student not found.");
     }
 
+    /**
+     * Get all students
+     * @return List of all students
+     */
+    public List<Student> getAllStudents() {
+        return students;
+    }
+
 }
